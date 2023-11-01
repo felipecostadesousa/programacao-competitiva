@@ -2,29 +2,51 @@
 
 using namespace std;
 
-typedef vector<int> vi;
-typedef pair<int, int> pii;
-typedef vector<pair<int,int> > vpp;
+int main(){
 
-int main() {
-
-    int n;
+    long long int n;
     cin >> n;
 
-    priority_queue< pii, vpp, greater<pii> > filaPrioridade;
-    vi vPaciencia;
-    vi vFora;
+    vector<int> tm(n);
+    vector<int> pac(n);
+    vector<int> tout(n);
+
+    long long int curTm = 0;
+
+    priority_queue<pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > > q;
 
     for(int i = 0; i < n; i++){
-        int t,p,r;
-        cin >> t >> p >> r;
-        filaPrioridade.push(make_pair(t,i));
-        vPaciencia.push_back(p);
-        vFora.push_back(r);
+
+        long long int t,p,tt;
+        cin >> t >> p >> tt;
+
+        tm[i] = t;
+        pac[i] = p;
+        tout[i] = tt;
+
+        q.push(make_pair(0,i));
+
     }
 
-    while(!filaPrioridade.empty()){
-        
+    while(!q.empty()){
+
+        long long int clientTm = q.top().first;
+        long long int idx = q.top().second;
+
+        q.pop();
+
+        if(clientTm + pac[idx] >= curTm){
+            if(clientTm > curTm){
+                curTm = clientTm;
+            }
+            curTm += tm[idx];
+        }
+        else{
+            q.push(make_pair(clientTm+pac[idx]+tout[idx],idx));
+        }
+
     }
+
+    cout << curTm << endl;
 
 }
