@@ -37,8 +37,15 @@ int main(){
     set<int> s;
 
     s.insert(3);
+    s.insert(4);
+    s.insert(5);
+    s.insert(7);
 
     cout << s.size() << endl;
+
+    if(s.count(7)){
+        cout << "Temos o 7" << endl;
+    }
 
     if(s.find(2) == s.end()){
         cout << "O numero 2 nao esta no set" << endl;
@@ -63,5 +70,13 @@ int main(){
         cout << "O numero 3 esta no set" << endl;
     }
 
+    s.clear();
+    
+    if(s.count(7)){
+        cout << "Temos o 7" << endl;
+    }
+    else{
+        cout << "Nao temos o 7" << endl;
+    }
 
 }
