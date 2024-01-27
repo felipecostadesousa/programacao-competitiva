@@ -1,39 +1,58 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-int main(){
+int andGertrudes(vector<int>& v, int n) {
+
+    int resultado_minimo = INT_MAX;
+
+    for (int l = 0; l < n; l++) {
+        for (int r = l; r < n; r++) {
+            int resultado = v[l];
+            for (int k = l + 1; k <= r; k++) {
+                resultado &= v[k];
+            }
+            if(resultado_minimo < resultado){
+                resultado_minimo = resultado_minimo;
+            }
+            else if(resultado <= resultado_minimo){
+                resultado_minimo = resultado;
+            }
+        }
+    }
+
+    return resultado_minimo;
+}
+
+int main() {
 
     int t;
     cin >> t;
 
-    for(int i = 0; i < t; i++){
+    vector<int> resultados;
+
+    for (int i = 0; i < t; i++) {
 
         int n;
         cin >> n;
 
-        vector<int> v;
+        vector<int> va;
 
-        for(int j = 0; j < n; j++){
+        for (int j = 0; j < n; j++) {
             int a;
             cin >> a;
-            v.push_back(a);
+            va.push_back(a);
         }
 
-        for(int j = 0; j < n; j++){
-            v[j] = (v[j]&v[n-1-j]);
-        }
+        int resultado = andGertrudes(va, n);
 
-        int resultado = 0;
+        resultados.push_back(resultado);
+    }
 
-        for(int j = 0; j < v.size(); j++){
-            if(v[j] > resultado){
-                resultado = v[j];
-            }
-        }
-
-        cout << resultado << endl;
-
+    for (int i = 0; i < resultados.size(); ++i) {
+        cout << resultados[i] << endl;
     }
 
 }
