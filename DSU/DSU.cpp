@@ -23,6 +23,9 @@ class DSU {
     void join_sets(int a, int b){
       a = find_set(a);
       b = find_set(b);
+      if(a == b){
+        return;
+      }
       if(card[a] < card[b]){
         swap(a,b);
       }
