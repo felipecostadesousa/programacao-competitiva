@@ -7,7 +7,7 @@ void dfs(int start){
   cout << start+1 << endl;
   visitado[start] = true;
   for(int w: grafo[start]){
-    if(visitado[w] == false){
+    if(!visitado[w]){
       dfs(w);
     }
   }

@@ -2,8 +2,8 @@
 #define GRAPH_MAX_SIZE 100
 using namespace std;
 vector<vector<int>> grafo(GRAPH_MAX_SIZE);
+vector<bool> visitado(GRAPH_MAX_SIZE,false);
 void bfs(int start){
-  vector<bool> visitado(11,false);
   queue<int> fila;
   fila.push(start);
   visitado[start] = true;
@@ -12,7 +12,7 @@ void bfs(int start){
     fila.pop();
     cout << u+1 << endl;
     for(int w: grafo[u]){
-      if(visitado[w] == false){
+      if(!visitado[w]){
         fila.push(w);
         visitado[w] = true;
       }
