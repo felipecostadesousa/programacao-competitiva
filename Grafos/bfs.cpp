@@ -8,7 +8,6 @@ void bfs(int start){
   vector<bool> visitado(GRAPH_MAX_SIZE,false);
   queue<int> fila;
   fila.push(start);
-  stack
   visitado[start] = true;
   distancia[start] = 0;
   while(fila.size()){
@@ -34,7 +33,6 @@ int main(){
     u--;
     v--;
     grafo[u].push_back(v);
-    grafo[v].push_back(u);
   }
   bfs(0);
 }
